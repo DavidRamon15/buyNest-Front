@@ -1,0 +1,28 @@
+<div class="product-showcase">
+    <h1 class="product-title">{{ product.name }}</h1>
+    <div class="product-content">
+        <div class="carousel-side">
+            <div class="carousel-container">
+                <button class="carousel-btn left" (click)="prevMedia()">&#8592;</button>
+                <div class="carousel-media">
+                    <img *ngIf="!showVideo" [src]="product.images[currentIndex]" alt="Imagen del producto"
+                        class="carousel-img" />
+                    <video *ngIf="showVideo" controls class="carousel-video">
+                        <source [src]="product.video" type="video/mp4" />
+                        Tu navegador no soporta el video.
+                    </video>
+                </div>
+                <button class="carousel-btn right" (click)="nextMedia()">&#8594;</button>
+            </div>
+            <div class="carousel-indicators">
+                <span *ngFor="let img of product.images; let i = index"
+                    [class.active]="currentIndex === i && !showVideo"
+                    (click)="currentIndex = i; showVideo = false"></span>
+                <span [class.active]="showVideo" (click)="showVideo = true">&#9658;</span>
+            </div>
+        </div>
+        <div class="product-description">
+            <p>{{ product.description }}</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="home">
+    <div class="categorias-btns" style="margin-bottom: 1.5rem;">
+        <button class="categoria-btn" [class.active]="!categoriaSeleccionada" (click)="mostrarTodos()">Todas</button>
+        <button *ngFor="let cat of categorias" class="categoria-btn" [class.active]="categoriaSeleccionada === cat.id"
+            (click)="filtrarPorCategoria(cat.id)">{{ cat.nombre }}</button>
+    </div>
+    <h1 class="home-title">Bienvenido a BuyNest</h1>
+    <h2 class="home-subtitle">Tu plataforma de compras inteligente</h2>
+    <div class="cards-list">
+        <a *ngFor="let producto of productos" [routerLink]="['/producto', producto.id]" style="text-decoration:none;">
+            <app-card-info [title]="producto.title" [image]="producto.image"
+                [description]="producto.description"></app-card-info>
+        </a>
+    </div>
+</div>
